@@ -1,0 +1,19 @@
+{
+  "name": "printer-api",
+  "version": "0.0.1",
+  "description": "Print documents through a REST API",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Coppertrack BV",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.1",
+    "pdf-to-printer": "^2.0.6",
+    "request-promise-native": "^1.0.9"
+  }
+}
