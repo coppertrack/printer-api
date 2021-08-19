@@ -5,10 +5,6 @@ const http = require('http')
 const scheduler = new ToadScheduler()
 
 function systemCheck(port) {
-    // return http.get({host: `http://127.0.0.1:${port}/status`}, function (response) {
-    //     return response.statusCode === 200;
-    // })
-
     const request = net.request(`http://127.0.0.1:${port}/status`)
     return request.on('response', (response) => {
         return response.statusCode === 200

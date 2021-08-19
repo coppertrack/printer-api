@@ -4,6 +4,7 @@ const ptp = require('pdf-to-printer')
 const path = require('path')
 const fileUpload = require('express-fileupload')
 const requestPromise = require('request-promise-native')
+const cors = require('cors')
 
 const app = express()
 
@@ -13,6 +14,7 @@ async function downloadDocumentFromUrl(url, filename) {
 }
 
 app.use(fileUpload())
+app.use(cors())
 
 app.get('/', (request, response) => {
     response.status(200).send({'message': 'This the print API.'})

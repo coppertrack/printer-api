@@ -8,8 +8,7 @@
     "postinstall": "electron-builder install-app-deps",
     "build:local": "electron-builder --mac --windows --linux",
     "release:local": "electron-builder --mac --windows --linux --publish always",
-    "start": "node .",
-    "electron": "electron main.js",
+    "start": "electron main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Coppertrack BV",
@@ -34,6 +33,7 @@
     }
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-fileupload": "^1.2.1",
     "pdf-to-printer": "^2.0.6",
