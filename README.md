@@ -18,13 +18,13 @@ Get all printers:
 curl localhost:1761/printers
 ```
 
-Upload a PDF. This requires the `document` field to be a PDF.
+Upload a PDF to the api. This requires the `document` field to be a PDF:
 
 ```bash
 curl http://localhost:1761/print\?printer\=PRINTERNAME -F "document=@Confirmation1.pdf"
 ```
 
-Use an URL to upload
+Print the pdf from a url:
 
 ```bash
 curl -X POST http://localhost:1761/print\?printer\=PRINTERNAME\&url\=http://pdf.com
