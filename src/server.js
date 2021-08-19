@@ -1,12 +1,11 @@
-import express, { request } from 'express'
-import fs from 'fs';
-import ptp from 'pdf-to-printer'
-import path from 'path'
-import fileUpload from 'express-fileupload';
-import requestPromise from 'request-promise-native';
+const express = require('express')
+const fs = require('fs');
+const ptp = require('pdf-to-printer')
+const path = require('path')
+const fileUpload = require('express-fileupload')
+const requestPromise = require('request-promise-native')
 
 const app = express()
-const port = 1761
 
 async function downloadDocumentFromUrl(url, filename) {
     let pdfBuffer = await requestPromise.get({ uri: url, encoding: null })
@@ -15,7 +14,11 @@ async function downloadDocumentFromUrl(url, filename) {
 
 app.use(fileUpload())
 
-app.get('/status', function (request, response) {
+app.get('/', (request, response) => {
+    response.status(200).send({'message': 'This the print API.'})
+})
+
+app.get('/status', (request, response) => {
     response.status(200).send({'status': 'Up and running!'})
 })
 
@@ -24,6 +27,10 @@ app.get('/printers', function (request, response) {
         .then(result => {
             response.status(200).send(result)
          })
+})
+
+app.get('/print', async(request, response) => {
+    response.status(404).send({'message': 'Printing can only be done with a POST request.'})
 })
 
 app.post('/print', async(request, response) => {
@@ -59,6 +66,4 @@ app.post('/print', async(request, response) => {
         })
 })
 
-app.listen(port, () => {
-    console.log(`REST service started on port ${port}`)
-})
+module.exports.api = app

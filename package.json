@@ -2,18 +2,48 @@
   "name": "printer-api",
   "version": "0.0.1",
   "description": "Print documents through a REST API",
-  "main": "index.js",
-  "type": "module",
+  "main": "main.js",
+  "repository": "github:coppertrack/printer-api",
   "scripts": {
+    "postinstall": "electron-builder install-app-deps",
+    "build": "electron-builder --mac --windows --linux",
+    "release": "electron-builder --mac --windows --linux --publish always",
     "start": "node src",
+    "electron": "electron main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Coppertrack BV",
   "license": "ISC",
+  "build": {
+    "appId": "com.coppertrack.printerapi",
+    "productName": "Printer API",
+    "mac": {
+      "category": "public.app-category.business",
+      "extendInfo": {
+        "LSUIElement": 1
+      }
+    },
+    "dmg": {
+      "icon": false
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "category": "Office"
+    }
+  },
   "dependencies": {
     "express": "^4.17.1",
     "express-fileupload": "^1.2.1",
     "pdf-to-printer": "^2.0.6",
-    "request-promise-native": "^1.0.9"
+    "request": "^2.88.2",
+    "request-promise-native": "^1.0.9",
+    "toad-scheduler": "^1.5.0",
+    "update-electron-app": "^2.0.1"
+  },
+  "devDependencies": {
+    "electron": "^13.2.1",
+    "electron-builder": "^22.11.7"
   }
 }
