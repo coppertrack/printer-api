@@ -22,7 +22,7 @@ function startRestApi() {
 }
 
 app.whenReady().then(() => {
-    const icon = nativeImage.createFromPath(path.join(__dirname, 'icon@2x.png'))
+    const icon = path.join(__dirname, 'src/icon@2x.png')
     tray = new Tray(icon)
 
     tray.setToolTip('Printer Client')
