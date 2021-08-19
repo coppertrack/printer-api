@@ -1,5 +1,6 @@
-const { app, Menu, Tray, nativeImage } = require('electron')
+const { app, Menu, Tray, Notification } = require('electron')
 const { scheduleSystemCheck, scheduler } = require('./src/systemcheck')
+const { getDoNotDisturb } = require('electron-notification-state')
 const { api } = require('./src/server.js')
 const path = require('path')
 
@@ -11,6 +12,16 @@ const contextMenu = [
     { label: 'Close', click() { scheduler.stop(); app.quit() } },
 ]
 
+function startUpNotification() {
+    if (getDoNotDisturb()) return
+
+    new Notification({
+        title: 'Printer API started!',
+        body: 'You can now list printers.',
+        silent: true
+    }).show()
+}
+
 const gotTheLock = app.requestSingleInstanceLock()
 
 if (! gotTheLock) app.quit()
@@ -21,7 +32,9 @@ function startRestApi() {
     })
 }
 
-app.whenReady().then(() => {
+if (process.platform === 'win32') app.setAppUserModelId(process.execPath);
+
+function startApp() {
     const icon = path.join(__dirname, 'src/icon@2x.png')
     tray = new Tray(icon)
 
@@ -30,6 +43,10 @@ app.whenReady().then(() => {
 
     scheduleSystemCheck(port, tray, contextMenu)
     startRestApi()
-});
+}
+
+app.whenReady()
+    .then(startApp)
+    .then(startUpNotification);
 
 require('update-electron-app')()

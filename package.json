@@ -34,6 +34,7 @@
   },
   "dependencies": {
     "cors": "^2.8.5",
+    "electron-notification-state": "^1.0.4",
     "express": "^4.17.1",
     "express-fileupload": "^1.2.1",
     "pdf-to-printer": "^2.0.6",
