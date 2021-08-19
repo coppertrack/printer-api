@@ -43,6 +43,7 @@
     "update-electron-app": "^2.0.1"
   },
   "devDependencies": {
+    "dmg-license": "^1.0.9",
     "electron": "^13.2.1",
     "electron-builder": "^22.11.7"
   }
