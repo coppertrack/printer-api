@@ -48,5 +48,3 @@ function startApp() {
 app.whenReady()
     .then(startApp)
     .then(startUpNotification);
-
-require('update-electron-app')()
