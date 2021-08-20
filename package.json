@@ -1,6 +1,6 @@
 {
   "name": "printer-api",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Print documents through a REST API",
   "main": "main.js",
   "repository": "github:coppertrack/printer-api",
