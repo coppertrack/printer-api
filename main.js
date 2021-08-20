@@ -27,8 +27,17 @@ const gotTheLock = app.requestSingleInstanceLock()
 if (! gotTheLock) app.quit()
 
 function startRestApi() {
-    api.listen(port, () => {
-        console.log(`REST service started on port ${port}`)
+    api.listen(port, '127.0.0.1', () => {
+        console.log(`REST service started on http://127.0.0.1:${port}.`)
+    })
+
+    api.on('error', (e) => {
+        if (e.code === 'EADDRINUSE') {
+            new Notification({
+                title: 'Printer API service already running.',
+                silent: true
+            }).show()
+        }
     })
 }
 
