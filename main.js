@@ -6,9 +6,10 @@ const path = require('path')
 
 let tray = null
 const port = 1761
+const version = '0.0.5'
 
 const contextMenu = [
-    { label: 'API state: running..' },
+    { label: `API ${version}: running..` },
     { label: 'Close', click() { scheduler.stop(); app.quit() } },
 ]
 
