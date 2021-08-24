@@ -6,7 +6,7 @@ const path = require('path')
 
 let tray = null
 const port = 1761
-const version = '0.0.5'
+const version = '0.0.6'
 
 const contextMenu = [
     { label: `API ${version}: running..` },
